@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.promis.security.mapper.ICustomerMapper">
+
+  <cache/>
+
+  <resultMap id="CustomerResultMap" type="Customer">
+    <id property="customerNo" column="CUSTOMERNO"/>
+    <result property="typeNo" column="TYPENO"/>
+    <result property="ccode" column="CCODE"/>
+    <result property="cname" column="CNAME"/>
+    <result property="contact" column="CONTACT"/>
+    <result property="cardCode" column="CARDCODE"/>
+    <result property="mobile" column="MOBILE"/>
+    <result property="tel" column="TEL"/>
+    <result property="fax" column="FAX"/>
+    <result property="qq" column="QQ"/>
+    <result property="weiXin" column="WEIXIN"/>
+    <result property="feeStartDate" column="FEESTARTDATE"/>
+    <result property="feeEndDate" column="FEEENDDATE"/>
+    <result property="cstatus" column="CSTATUS"/>
+  </resultMap>
+
+  <insert id="create"  parameterType="Customer" flushCache="true">
+   insert into Customer (CUSTOMERNO,TYPENO,CCODE,CNAME,CONTACT,CARDCODE,MOBILE,TEL,FAX,QQ,WEIXIN,FEESTARTDATE,FEEENDDATE,CSTATUS)
+   values (#{customerNo},#{typeNo},#{ccode},#{cname},#{contact},#{cardCode},#{mobile},
+   #{tel},#{fax},#{qq},#{weiXin},#{feeStartDate},#{feeEndDate},#{cstatus})
+  </insert>
+  
+  <update id="update" flushCache="true">
+   update Customer set TYPENO=#{typeNo},CCODE=#{ccode},CNAME=#{cname},
+   CONTACT=#{contact},CARDCODE=#{cardCode},MOBILE=#{mobile},TEL=#{tel},FAX=#{fax},QQ=#{qq},
+   WEIXIN=#{weiXin},FEESTARTDATE=#{feeStartDate},FEEENDDATE=#{feeEndDate},CSTATUS=#{cstatus}
+   where CUSTOMERNO=#{customerNo}
+  </update>
+  
+  <delete id="delete" flushCache="true">
+   delete from Customer where CUSTOMERNO=#{customerNo}
+  </delete>
+  
+  <select id="selectListByAll" resultMap="CustomerResultMap">
+   select * from Customer
+  </select>
+  
+  <select id="selectListByAllWithPage" resultMap="CustomerResultMap">
+   select * from Customer
+  </select>
+  
+  <select id="selectByCustomerNo" resultMap="CustomerResultMap" >
+  select * from Customer  where CUSTOMERNO=#{customerNo}
+  </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

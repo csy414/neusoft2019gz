@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neusoft.promis.security.mapper.IRoomMapper">
+
+  <cache/>
+
+  <resultMap id="RoomResultMap" type="Room">
+    <id property="roomNo" column="ROOMNO"/>
+    <result property="houseTypeNo" column="HOUSETYPENO"/>
+    <result property="buildingNo" column="BUILDINGNO"/>
+    <result property="departmentCode" column="DEPARTMENTCODE"/>
+    <result property="floor" column="FLOOR"/>
+    <result property="roomCode" column="ROOMCODE"/>
+    <result property="buildingArea" column="BUILDINGAREA"/>
+    <result property="feeArea" column="FEEAREA"/>
+    <result property="roomStatus" column="ROOMSTATUS"/>
+    <result property="roomType" column="ROOMTYPE"/>
+  </resultMap>
+
+  <insert id="create"  parameterType="Room" flushCache="true">
+   insert into Room (ROOMNO,HOUSETYPENO,BUILDINGNO,DEPARTMENTCODE,FLOOR,ROOMCODE,BUILDINGAREA,FEEAREA,ROOMSTATUS,ROOMTYPE)
+   values (#{roomNo},#{houseTypeNo},#{buildingNo},#{departmentCode},#{floor},#{roomCode},#{buildingArea},
+   #{feeArea},#{roomStatus},#{roomType})
+  </insert>
+  
+  <update id="update" flushCache="true">
+   update Room set HOUSETYPENO=#{houseTypeNo},BUILDINGNO=#{buildingNo},DEPARTMENTCODE=#{departmentCode},
+   FLOOR=#{floor},ROOMCODE=#{roomCode},BUILDINGAREA=#{buildingArea},
+   FEEAREA=#{feeArea},ROOMSTATUS=#{roomStatus},ROOMTYPE=#{roomType}
+   where ROOMNO=#{roomNo}
+  </update>
+  
+  <delete id="delete" flushCache="true">
+   delete from Room where ROOMNO=#{roomNo}
+  </delete>
+  
+  <select id="selectListByAll" resultMap="RoomResultMap">
+   select * from Room
+  </select>
+  
+  
+  <select id="selectByRoomNo" resultMap="RoomResultMap" >
+  select * from Room  where ROOMNO=#{roomNo}
+  </select>
+
+
+</mapper>
